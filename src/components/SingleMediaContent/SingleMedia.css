@@ -1,0 +1,20 @@
+.media {
+  display: flex;
+  flex-direction: column;
+  width: 262px;
+  padding: 12px;
+  margin: 5px 0;
+
+  border-radius: 2px;
+  position: relative;
+  /* font-family: "Montserrat", sans-serif; */
+}
+.MuiBadge-root {
+  left: 78%;
+  top: 1.75rem;
+}
+span.MuiBadge-badge.MuiBadge-standard {
+  min-width: 40px;
+  height: 40px;
+  border-radius: 0px;
+}

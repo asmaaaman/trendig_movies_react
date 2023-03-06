@@ -1,0 +1,11 @@
+.trending {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.pageTitle {
+  margin: 1.6rem;
+  font-weight: bold;
+  font-size: 25px;
+}
