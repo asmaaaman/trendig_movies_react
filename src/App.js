@@ -17,7 +17,6 @@ function App() {
     searchMedia(page, searchText)
       .then((res) => {
         setSearchData(res?.data?.results);
-        console.log(res);
 
         setNumberOfPages(res.data.total_pages);
       })
@@ -62,8 +61,9 @@ function App() {
       <>
         <SearchMedia
           filterValueSelected={onFilterValueSelected}
+          filterTextValue={filterTextValue}
           handleSearchData={handleSearchData}
-          searchData={searchData}
+          // searchData={searchData}
           searchText={searchText}
           moviesList={filteredMediaList}
           numberOfPages={numberOfPages}

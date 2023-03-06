@@ -28,19 +28,13 @@ const mediaTypes = [
   },
 ];
 
-const FilterMovies = ({ moviesList, filterValueSelected }) => {
+const FilterMovies = ({ moviesList, filterValueSelected, filterText }) => {
   const { mediTypeContainer } = useStyles();
-  const [mediaType, setMediaType] = useState();
-  const [filteredMediaType, setFilteredMediaType] = useState([]);
-  const handleChange = (event) => {
-    // setMediaType(event.target.value);
 
+  const handleChange = (event) => {
     filterValueSelected(event.target.value);
   };
-  //   function onFilteredValueChanged(event) {
-  //     console.log(event.target);
-  //     filterValueSelected(event.target.id);
-  //   }
+
   const handleMediaType = (value) => {
     const MediaTypeBox = (
       <Box sx={{ display: "flex", gap: 1 }}>
@@ -59,7 +53,7 @@ const FilterMovies = ({ moviesList, filterValueSelected }) => {
         labelId="demo-select-small"
         id="demo-select-small"
         displayEmpty
-        value={mediaType}
+        value={filterText}
         defaultValue=""
         onChange={handleChange}
         renderValue={(value) => handleMediaType(value)}
