@@ -8,6 +8,7 @@ import { searchMedia } from "../../network/api";
 import SingleMedia from "../SingleMediaContent/SingleMedia";
 import "../List/ListMovies.css";
 import CustomPagination from "../Pagination/CustomPagination";
+import ListMovies from "../List/ListMovies";
 
 const SearchMedia = ({
   moviesList,
@@ -15,6 +16,9 @@ const SearchMedia = ({
   handleSearchData,
   searchData,
   searchText,
+  numberOfPages,
+  setPage,
+  onFilterValueSelected,
 }) => {
   return (
     <>
@@ -25,12 +29,13 @@ const SearchMedia = ({
               <>
                 <Search sx={{ color: "action.active", mr: 1, my: 0.5 }} />
                 <TextField
-                  onKeyDown={(event) => handleSearchData(event)}
+                  onChange={handleSearchData}
                   fullWidth
                   id="input-with-sx"
                   placeholder="Find movies tv shows documentary and more... "
                   variant="standard"
                   InputProps={{ disableUnderline: true }}
+                  defaultValue={searchText}
                 />
               </>
             </Box>
@@ -43,13 +48,18 @@ const SearchMedia = ({
           </Grid>
         </Grid>
       </Box>
+
       <div className="trending">
-        {searchData && searchData?.map((item) => <SingleMedia media={item} />)}
-        {searchText && !searchData && <h2>No Series Found</h2>}
+        <ListMovies
+          moviesList={searchData.length > 0 ? searchData : moviesList}
+          numberOfPages={numberOfPages}
+          setPage={setPage}
+          filterValueSelected={onFilterValueSelected}
+          handleSearchData={handleSearchData}
+          searchData={searchData}
+          searchText={searchText}
+        />
       </div>
-      {/* {numOfPages > 1 && (
-        <CustomPagination setPage={setPage} numOfPages={numOfPages} />
-      )} */}
     </>
   );
 };

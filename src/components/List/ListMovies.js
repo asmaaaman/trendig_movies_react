@@ -1,7 +1,5 @@
-import { Box, Grid } from "@mui/material";
-import { Container } from "@mui/system";
-import React, { useState, useEffect } from "react";
-import { getMedia } from "../../network/api";
+import React from "react";
+
 import CustomPagination from "../Pagination/CustomPagination";
 import SingleMedia from "../SingleMediaContent/SingleMedia";
 import "./ListMovies.css";

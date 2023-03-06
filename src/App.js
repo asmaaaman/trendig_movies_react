@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import Header from "./components/Header/Header";
-import ListMovies from "./components/List/ListMovies";
 import SearchMedia from "./components/Search/Search";
 import { getMedia, searchMedia } from "./network/api";
 import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
@@ -18,16 +17,17 @@ function App() {
     searchMedia(page, searchText)
       .then((res) => {
         setSearchData(res?.data?.results);
+        console.log(res);
 
         setNumberOfPages(res.data.total_pages);
       })
       .catch((err) => console.log(err));
   };
+
   const handleSearchData = (event) => {
-    if (event.key === "Enter") {
-      setSearchText(event.target.value);
-      getSearchData(searchData);
-    }
+    console.log(event);
+    setSearchText(event?.target?.value);
+    getSearchData(searchData);
   };
   const getData = () => {
     getMedia(page)
@@ -39,9 +39,13 @@ function App() {
   };
 
   useEffect(() => {
-    getData();
-    // getSearchData();
-  }, [page]);
+    if (searchText === "") {
+      getData();
+    } else {
+      getSearchData();
+      // setSearchText("");
+    }
+  }, [page, searchText]);
   //Filtered Data
   let filteredMediaList = moviesList.filter((media) => {
     if (filterTextValue === "Movie") {
@@ -58,23 +62,13 @@ function App() {
       <>
         <SearchMedia
           filterValueSelected={onFilterValueSelected}
-          moviesList={searchData}
           handleSearchData={handleSearchData}
           searchData={searchData}
           searchText={searchText}
+          moviesList={filteredMediaList}
+          numberOfPages={numberOfPages}
+          setPage={setPage}
         />
-
-        {searchData?.length === 0 && (
-          <ListMovies
-            moviesList={filteredMediaList}
-            numberOfPages={numberOfPages}
-            setPage={setPage}
-            filterValueSelected={onFilterValueSelected}
-            handleSearchData={handleSearchData}
-            searchData={searchData}
-            searchText={searchText}
-          />
-        )}
       </>
     );
   };
