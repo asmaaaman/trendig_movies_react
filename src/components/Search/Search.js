@@ -14,7 +14,6 @@ const SearchMedia = ({
   moviesList,
   filterValueSelected,
   handleSearchData,
-  filterTextValue,
   searchData,
   searchText,
   numberOfPages,
@@ -41,12 +40,10 @@ const SearchMedia = ({
               </>
             </Box>
           </Grid>
-          {console.log(filterValueSelected)}
           <Grid item xs={12} md={4}>
             <FilterMovies
               filterValueSelected={filterValueSelected}
               moviesList={moviesList}
-              filterText={filterTextValue}
             />
           </Grid>
         </Grid>
@@ -54,12 +51,13 @@ const SearchMedia = ({
 
       <div className="trending">
         <ListMovies
-          moviesList={moviesList}
+          moviesList={searchData.length > 0 ? searchData : moviesList}
           numberOfPages={numberOfPages}
           setPage={setPage}
           filterValueSelected={onFilterValueSelected}
           handleSearchData={handleSearchData}
-          filterText={filterTextValue}
+          searchData={searchData}
+          searchText={searchText}
         />
       </div>
     </>

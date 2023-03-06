@@ -61,9 +61,8 @@ function App() {
       <>
         <SearchMedia
           filterValueSelected={onFilterValueSelected}
-          filterTextValue={filterTextValue}
           handleSearchData={handleSearchData}
-          // searchData={searchData}
+          searchData={searchData}
           searchText={searchText}
           moviesList={filteredMediaList}
           numberOfPages={numberOfPages}
